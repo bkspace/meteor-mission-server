@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/bkspace/meteor-server/issues"
   },
-  "homepage": "https://github.com/bkspace/meteor-server#readme"
+  "homepage": "https://github.com/bkspace/meteor-server#readme",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "express": "^4.13.4"
+  }
 }

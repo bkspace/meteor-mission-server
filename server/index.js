@@ -41,7 +41,7 @@ app.get('/connect', cors(), timeout('25s'), (req, res) => {
   });
   q.addChangeListener((e) => {
     if (!req.timedout) {
-      res.write(formatMessage(e.detail.quadrant)));
+      res.write(formatMessage(e.detail.quadrant));
     } else {
       res.end();
     }

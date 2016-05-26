@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import Quadrant from './quadrant';
 import bodyParser from 'body-parser';
+import timeout from 'connect-timeout';
 import { shoppingList } from './database';
 
 const q = new Quadrant();
@@ -30,7 +31,7 @@ app.get('/update', urlParser, (req, res) => {
   res.end('ok');
 });
 
-app.get('/connect', cors(), (req, res) => {
+app.get('/connect', cors(), timeout('25s'), (req, res) => {
   req.setTimeout(50000, () => res.end());
   res.setTimeout(50000, () => res.end());
   res.writeHead(200, {

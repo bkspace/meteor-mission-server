@@ -25,7 +25,7 @@ function getIdFromBeacons(beacon) { // [1,2,3]
 app.listen(process.env.PORT || 3000, () => console.log('Starting server on 3000'));
 
 app.get('/update', urlParser, (req, res) => {
-  const newQuad = getIdFromBeacons(req.body.id);
+  const newQuad = getIdFromBeacons(req.query.id);
   q.update(newQuad);
   res.end('ok');
 });

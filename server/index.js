@@ -1,9 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import Quadrant from './quadrant';
+import bodyParser from 'body-parser';
+import { shoppingList } from './database';
 const q = new Quadrant();
 
 const app = express();
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+app.post('/locations', urlencodedParser, (req, res) => {
+});
 
 const formatMessage = (msg) => `data: ${msg}\n\n`;
 

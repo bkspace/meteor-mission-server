@@ -6,8 +6,7 @@ import { shoppingList } from './database';
 
 const q = new Quadrant();
 const app = express();
-// const jsonParser = bodyParser.json();
-const textParser = bodyParser.text()
+const urlParser = bodyParser.urlencoded({ extended: false })
 
 const formatMessage = (msg) => `data: ${msg}\n\n`;
 
@@ -23,14 +22,12 @@ function getIdFromBeacons(beacon) { // [1,2,3]
   return quads[beacon]
 }
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('Starting server on 3000');
-});
+app.listen(process.env.PORT || 3000, () => console.log('Starting server on 3000'));
 
-app.post('/update', textParser, (req, res) => {
-  const newQuad = getIdFromBeacons(req.body);
+app.get('/update', urlParser, (req, res) => {
+  const newQuad = getIdFromBeacons(req.body.id);
   q.update(newQuad);
-  res.end(req.body + "hello");
+  res.end('ok');
 });
 
 app.get('/connect', cors(), (req, res) => {

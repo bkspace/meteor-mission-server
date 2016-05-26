@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "babel-node server/index.js",
     "watch": "nodemon --ignore '*_test.js' --exec 'babel-node -- ./server/index.js'"
   },
   "repository": {

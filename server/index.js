@@ -10,6 +10,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.post('/locations', urlencodedParser, (req, res) => {
 
 });
+const formatMessage = (msg) => `data: ${msg}\n\n`;
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('Starting server on 3000');
@@ -22,6 +23,6 @@ app.get('/connect', cors(), function(req, res) {
     'Connection': 'keep-alive'
   });
   setInterval(() => {
-    res.write("This is my data");
+    res.write(formatMessage("123"));
   }, 3000);
 });

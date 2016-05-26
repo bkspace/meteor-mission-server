@@ -6,35 +6,31 @@ import { shoppingList } from './database';
 
 const q = new Quadrant();
 const app = express();
-const jsonParser = bodyParser.json();
+// const jsonParser = bodyParser.json();
+const textParser = bodyParser.text()
 
 const formatMessage = (msg) => `data: ${msg}\n\n`;
 
-function getIdFromBeacons(beacons = []) { // [1,2,3]
+function getIdFromBeacons(beacon) { // [1,2,3]
   const quads = {
-    '123': 'one', // F is the quadrant
-    '234': 'two',
-    '345': 'three',
-    '467': 'four',
-    '247': 'five',
-    '278': 'six',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
   };
-
-  const sortedBeacons = beacons.sort().join('');
-
-  if (quads[sortedBeacons]) {
-    return quads[sortedBeacons];
-  }
+  return quads[beacon]
 }
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('Starting server on 3000');
 });
 
-app.post('/update', jsonParser, (req, res) => {
+app.post('/update', textParser, (req, res) => {
   const newQuad = getIdFromBeacons(req.body);
   q.update(newQuad);
-  res.end('ok');
+  res.end(req.body + "hello");
 });
 
 app.get('/connect', cors(), (req, res) => {

@@ -14,6 +14,6 @@ app.get('/connect', cors(), function(req, res) {
     'Connection': 'keep-alive'
   });
   setInterval(() => {
-    res.write("This is my data");
+    res.write("data: My message\n\n");
   }, 3000);
 });

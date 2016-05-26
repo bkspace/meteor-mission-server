@@ -12,6 +12,7 @@ export default class Quadrant extends EventEmitter {
     this.emit('update quadrant', {
       detail: {
         quadrant,
+
         
       },
     });

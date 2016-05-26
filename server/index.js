@@ -31,6 +31,7 @@ app.get('/update', urlParser, (req, res) => {
 });
 
 app.get('/connect', cors(), (req, res) => {
+  req.setTimeout(50000, () => res.end());
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',

@@ -39,5 +39,11 @@ app.get('/connect', cors(), timeout('25s'), (req, res) => {
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive'
   });
-  q.addChangeListener((e) => res.write(formatMessage(e.detail.quadrant)));
+  q.addChangeListener((e) => {
+    if (!req.timedout) {
+      res.write(formatMessage(e.detail.quadrant)));
+    } else {
+      res.end();
+    }
+  }
 });

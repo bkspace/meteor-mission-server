@@ -8,12 +8,15 @@ export default class Quadrant extends EventEmitter {
   addChangeListener(cb) {
     this.on('update quadrant', cb.bind(this.quadrant));
   }
+  removeChangeListener(cb) {
+    this.removeListener('update quadrant', cb);
+  }
   update(quadrant) {
     this.emit('update quadrant', {
       detail: {
         quadrant,
 
-        
+
       },
     });
   }
